@@ -1,36 +1,24 @@
 require 'pry'
+require_relative '../config/environment.rb'
 
 class Song
+
   attr_accessor :name
   attr_reader :artist
 
-  @@songs = []
+  @@all = []
 
-  def initialize
-    @@songs << self
-  end
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
-  def self.all
-    @@songs
-  end
-
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    self.all.count
-  end
+  extend Memorable::ClassMethods
+  extend Findable
+  include Paramable
+  include Memorable::InstanceMethods
 
   def artist=(artist)
     @artist = artist
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
+  def self.all
+    @@all
   end
+
 end
