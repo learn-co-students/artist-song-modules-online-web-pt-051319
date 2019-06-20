@@ -34,3 +34,6 @@ class Song
     name.downcase.gsub(' ', '-')
   end
 end
+.count reset_all
+
+
